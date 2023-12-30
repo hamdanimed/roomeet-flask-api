@@ -7,7 +7,7 @@ import json
  
  
 
-def create_similarity_matrix(data_path):
+def create_similarity_matrix(data_path='./generated-users2.csv'):
     
     generated_user_data = pd.read_csv(data_path)
     gdf=pd.DataFrame(generated_user_data)
@@ -37,7 +37,7 @@ def create_similarity_matrix(data_path):
         "indices":indices.to_dict()
     }
 
-
+    print("calculated matrix")
     with open("./cosine_sim_matrix.json", "w") as outfile:
         json.dump(cosine_sim_json, outfile)
 
