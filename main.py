@@ -1,6 +1,7 @@
 from flask import Flask,request,jsonify
 
 from recommendation import get_recommendations
+from recommendation import create_similarity_matrix
 
 app = Flask(__name__)
 
@@ -24,6 +25,11 @@ app = Flask(__name__)
 #         data=request.get_json()
 
 #     return jsonify(data),201
+
+@app.route("/calculate-cosin-matrix",methods=['GET'])
+def triggerCalculation():
+    create_similarity_matrix()
+    return jsonify("Done"),200
 
 @app.route("/recommendation",methods=['POST'])
 def recommendation():
