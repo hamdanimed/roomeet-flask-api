@@ -82,8 +82,9 @@ def get_recommendations(userEmail,nUsersToRecommend=20,data_path='./user-data-co
     # gdf.head()
     user=gdf[gdf['Email']==userEmail]
     print(user)
+    # print(user['Sexe'].values)
 
-    if user['Sexe'][0]=='Male':
+    if user['Sexe'].values[0]=='Male':
         gdf=gdf[gdf['Sexe']=='Male']
         # data_json=pd.read_json('./cosine_sim_matrix.json')
         with open('./cosine_sim_matrix_male.json', 'r') as openfile:
