@@ -32,6 +32,8 @@ def create_similarity_matrix_male(data_path='./user-data-comma.csv'):
     # Compute the Cosine Similarity matrix based on the count_matrix
     cosine_sim_male = cosine_similarity(count_matrix_male, count_matrix_male)
 
+    gdfMale.reset_index(drop=True, inplace=True)
+
     #Construct a reverse map of indices and userIds
     indices = pd.Series(gdfMale.index,index=gdfMale['Email'].values).drop_duplicates()
     # print(indices)
@@ -59,6 +61,8 @@ def create_similarity_matrix_female(data_path='./user-data-comma.csv'):
     # Compute the Cosine Similarity matrix based on the count_matrix
     cosine_sim_female = cosine_similarity(count_matrix_female, count_matrix_female)
 
+    gdfFemale.reset_index(drop=True, inplace=True)
+
     #Construct a reverse map of indices and userIds
     indices = pd.Series(gdfFemale.index,index=gdfFemale['Email'].values).drop_duplicates()
     # print(indices)
@@ -82,7 +86,7 @@ def get_recommendations(userEmail,nUsersToRecommend=20,data_path='./user-data-co
     # gdf.head()
     user=gdf[gdf['Email']==userEmail]
     print(user)
-    # print(user['Sexe'].values)
+    print(user['Sexe'].values[0])
 
     if user['Sexe'].values[0]=='Male':
         gdf=gdf[gdf['Sexe']=='Male']
@@ -103,6 +107,7 @@ def get_recommendations(userEmail,nUsersToRecommend=20,data_path='./user-data-co
 
     # Get the index of the user that matches the userId
     idx = indices[userEmail]
+    print(idx)
 
     # Get the pairwsie similarity scores of all the users with that user
     sim_scores = list(enumerate(cosine_sim[idx]))
