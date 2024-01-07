@@ -42,7 +42,7 @@ def triggerCalculationFemale():
     create_similarity_matrix_female()
     return jsonify("Done"),200
 
-@app.route("/recommendation",methods=['GET'])
+@app.route("/recommendation",methods=['POST'])
 def recommendation():
     query=request.get_json()
     
