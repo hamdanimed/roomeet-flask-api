@@ -10,28 +10,6 @@ app = Flask(__name__)
 CORS(app)
 
 
-
-# @app.route("/<user_id>",methods=['GET'])
-# def getUser(user_id):
-#     user_data={
-#         "user_id":user_id,
-#         "name":"hmad brahim"
-#     }
-
-#     extra = request.args.get("extra")
-#     if extra:
-#         user_data["extra"]=extra
-
-#     return jsonify(user_data),200
-
-# @app.route("/create-user",methods=['POST'])
-# def create_user():
-#     if request.method == 'POST':
-#         data=request.get_json()
-
-#     return jsonify(data),201
-
-
 @app.route("/calculate-cosin-matrix-male",methods=['GET'])
 def triggerCalculationMale():
     create_similarity_matrix_male()
